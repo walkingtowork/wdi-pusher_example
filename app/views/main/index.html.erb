@@ -1,8 +1,12 @@
 <h1>Pusher Example</h1>
 
-<ul id="messages"></ul>
-
-<%= form_for :message, :url => send_message_path, :method => "post" do |f| %>
+<%= form_for :message, :url => send_message_path, :method => "post", :remote => true do |f| %>
   <div><%= f.text_area :text, :rows => 5 %></div>
   <%= f.submit "Send" %>
 <% end %>
+
+<ul id="messages">
+  <% @messages.each do |message| %>
+    <li><%= message.content %></li>
+  <% end %>
+</ul>
